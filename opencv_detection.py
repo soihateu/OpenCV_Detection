@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from datetime import datetime
 
 cap = cv2.VideoCapture('Traffic.avi')
 frame_width = int( cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -12,7 +13,9 @@ out = cv2.VideoWriter("output.avi", fourcc, 5.0, (1280,720))
 
 ret, frame1 = cap.read()
 ret, frame2 = cap.read()
-print(frame1.shape)
+
+dateTimeObj = datetime.now()
+print(frame1.shape + dateTimeObj)
 while cap.isOpened():
     diff = cv2.absdiff(frame1, frame2)
     gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
